@@ -1,39 +1,42 @@
 package com.bodyesthetic.studio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.util.Date;
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
-public class Atendimento {
+@Table(name = "tb_atendimento")
+public class Atendimento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id_atendimento;
-    String cliente;
-    Date Data;
-    String servico;
-    double preco;
+    @Column(name = "id_atendimento")
+    private Long id_atendimento;
+
+    @Column(nullable = false, length = 100)
+    private String cliente;
+
+    @Column(nullable = false)
+    private LocalDate data;
+
+    @Column(nullable = false, length = 100)
+    private String servico;
+
+    @Column(nullable = false)
+    private Double preco;
 
     public Atendimento() {
     }
 
-    public Atendimento(int id_atendimento, String cliente, Date data, String servico, double preco) {
-        Id_atendimento = id_atendimento;
+    public Atendimento(String cliente, LocalDate data, String servico, Double preco) {
         this.cliente = cliente;
-        Data = data;
+        this.data = data;
         this.servico = servico;
         this.preco = preco;
     }
 
-    public int getId_atendimento() {
-        return Id_atendimento;
-    }
-
-    public void setId_atendimento(int id_atendimento) {
-        Id_atendimento = id_atendimento;
+    public Long getIdAtendimento() {
+        return id_atendimento;
     }
 
     public String getCliente() {
@@ -44,12 +47,12 @@ public class Atendimento {
         this.cliente = cliente;
     }
 
-    public Date getData() {
-        return Data;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setData(Date data) {
-        Data = data;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public String getServico() {
@@ -60,11 +63,12 @@ public class Atendimento {
         this.servico = servico;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 }
+

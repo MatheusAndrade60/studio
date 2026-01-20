@@ -1,48 +1,54 @@
 package com.bodyesthetic.studio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Cliente {
+@Table(name = "tb_clientes")
+public class Cliente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id_cliente;
-    String Nome;
-    int Idade;
+    @Column(name = "id_cliente")
+    private Long id_cliente;
+
+    @Column(nullable = false, length = 100)
+    private String nome;
+
+    @Column(nullable = false)
+    private Integer idade;
 
     public Cliente() {
     }
 
-    public Cliente(int id_cliente, String nome, int idade) {
-        Id_cliente = id_cliente;
-        Nome = nome;
-        Idade = idade;
+    public Cliente(Long id_cliente, String nome, Integer idade) {
+        this.id_cliente = id_cliente;
+        this.nome = nome;
+        this.idade = idade;
     }
 
-    public int getId_cliente() {
-        return Id_cliente;
+    public Long getId_cliente() {
+        return id_cliente;
     }
 
-    public void setId_cliente(int id_cliente) {
-        Id_cliente = id_cliente;
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
-    public int getIdade() {
-        return Idade;
+    public Integer getIdade() {
+        return idade;
     }
 
-    public void setIdade(int idade) {
-        Idade = idade;
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 }
+

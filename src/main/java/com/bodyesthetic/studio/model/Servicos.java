@@ -1,58 +1,60 @@
 package com.bodyesthetic.studio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Servicos {
+@Table(name = "tb_servicos")
+public class Servicos implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id_servicos;
-    String Tipo_servico;
-    String Nome_servico;
-    double preco;
+    @Column(name = "id_servico")
+    private Long id_servico;
+
+    @Column(name = "tipo_servico", nullable = false, length = 100)
+    private String tipoServico;
+
+    @Column(name = "nome_servico", nullable = false, length = 100)
+    private String nomeServico;
+
+    @Column(nullable = false)
+    private Double preco;
 
     public Servicos() {
     }
 
-    public Servicos(int id_servicos, String tipo_servico, String nome_servico, double preco) {
-        Id_servicos = id_servicos;
-        Tipo_servico = tipo_servico;
-        Nome_servico = nome_servico;
+    public Servicos(String tipoServico, String nomeServico, Double preco) {
+        this.tipoServico = tipoServico;
+        this.nomeServico = nomeServico;
         this.preco = preco;
     }
 
-    public int getId_servicos() {
-        return Id_servicos;
+    public Long getId_servico() {
+        return id_servico;
     }
 
-    public void setId_servicos(int id_servicos) {
-        Id_servicos = id_servicos;
+    public String getTipoServico() {
+        return tipoServico;
     }
 
-    public String getTipo_servico() {
-        return Tipo_servico;
+    public void setTipoServico(String tipoServico) {
+        this.tipoServico = tipoServico;
     }
 
-    public void setTipo_servico(String tipo_servico) {
-        Tipo_servico = tipo_servico;
+    public String getNomeServico() {
+        return nomeServico;
     }
 
-    public String getNome_servico() {
-        return Nome_servico;
+    public void setNomeServico(String nomeServico) {
+        this.nomeServico = nomeServico;
     }
 
-    public void setNome_servico(String nome_servico) {
-        Nome_servico = nome_servico;
-    }
-
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 }

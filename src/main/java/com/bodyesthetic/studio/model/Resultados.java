@@ -1,48 +1,60 @@
 package com.bodyesthetic.studio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Resultados {
+@Table(name = "tb_resultados")
+public class Resultados implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    double Total_bruto;
-    int N_agendamentos;
-    int Novos_clientes;
+    @Column(name = "id_resultados")
+    private Long id_resultados;
+
+    @Column(name = "total_bruto", nullable = false)
+    private Double totalBruto;
+
+    @Column(name = "n_agendamentos", nullable = false)
+    private Integer numeroAgendamentos;
+
+    @Column(name = "novos_clientes", nullable = false)
+    private Integer novosClientes;
 
     public Resultados() {
     }
 
-    public Resultados(double total_bruto, int n_agendamentos, int novos_clientes) {
-        Total_bruto = total_bruto;
-        N_agendamentos = n_agendamentos;
-        Novos_clientes = novos_clientes;
+    public Resultados(Double totalBruto, Integer numeroAgendamentos, Integer novosClientes) {
+        this.totalBruto = totalBruto;
+        this.numeroAgendamentos = numeroAgendamentos;
+        this.novosClientes = novosClientes;
     }
 
-    public double getTotal_bruto() {
-        return Total_bruto;
+    public Long getId_resultados() {
+        return id_resultados;
     }
 
-    public void setTotal_bruto(double total_bruto) {
-        Total_bruto = total_bruto;
+    public Double getTotalBruto() {
+        return totalBruto;
     }
 
-    public int getN_agendamentos() {
-        return N_agendamentos;
+    public void setTotalBruto(Double totalBruto) {
+        this.totalBruto = totalBruto;
     }
 
-    public void setN_agendamentos(int n_agendamentos) {
-        N_agendamentos = n_agendamentos;
+    public Integer getNumeroAgendamentos() {
+        return numeroAgendamentos;
     }
 
-    public int getNovos_clientes() {
-        return Novos_clientes;
+    public void setNumeroAgendamentos(Integer numeroAgendamentos) {
+        this.numeroAgendamentos = numeroAgendamentos;
     }
 
-    public void setNovos_clientes(int novos_clientes) {
-        Novos_clientes = novos_clientes;
+    public Integer getNovosClientes() {
+        return novosClientes;
+    }
+
+    public void setNovosClientes(Integer novosClientes) {
+        this.novosClientes = novosClientes;
     }
 }
